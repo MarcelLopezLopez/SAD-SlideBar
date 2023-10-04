@@ -6,11 +6,31 @@ import static java.lang.System.in;
 public class SlideBar {
 
   private static void setRaw() {
-    // put terminal in raw mode
+    //Passar de mode Cooked a mode Raw
+    //String amb la seqüència necessaria per canviar de mode Cooked a mode Raw al terminal
+    String [] modeRaw = {"/bin/sh", "-c", "stty raw </dev/tty"};
+    try {
+      //getRuntime().exec() serveix per poder executar la linea de comandes
+      //waitFor() espera hasta que el subproceso termine
+      Runtime.getRuntime().exec(modeRaw).waitFor();  
+    }catch (Exception e) {
+      //Comuniquem l'error
+      System.out.println("Error");
+    } 
   }
   
   private static void unsetRaw() {
-    // restore terminal to cooked mode
+    //Passar de mode Raw a mode Cooked
+    //String amb la seqüència necessaria per canviar de mode Raw a mode Cooked al terminal
+    String[] modeCooked = {"/bin/sh", "-c", "stty cooked <dev/tty"};
+    try{
+      //getRuntime().exec() serveix per poder executar la linea de comandes
+      //waitFor() espera hasta que el subproceso termine
+      Runtime.getRuntime().exec(modeCooked).waitFor();
+    } catch (IOException | InterruptedException e){
+      //Comuniquem l'error
+      System.out.println("Error");
+    }
   }
   
   static final int RIGHT = 0, LEFT = 1;

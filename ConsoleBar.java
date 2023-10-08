@@ -18,7 +18,7 @@ class ConsoleBar implements Observer {
 
 	int cmax;
 	Value model;
-	static final char BLOCK = ...;
+	static final char BLOCK = (char) 219;
   
 	ConsoleBar(Value value) {
 		model = value;
